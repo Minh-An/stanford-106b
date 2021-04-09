@@ -4,8 +4,16 @@
 # Compiled Object files
 *.slo
 *.lo
-*.o
+**/*.o
 *.obj
+
+# Debug Content 
+**/*.dSYM
+**/*.dSYM/**
+
+# VSCode
+**/.vscode/**
+**/.vscode
 
 # Precompiled Headers
 *.gch
@@ -30,3 +38,5 @@
 *.exe
 *.out
 *.app
+
+**/.DS_Store

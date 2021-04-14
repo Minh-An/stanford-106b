@@ -34,11 +34,6 @@ c_cpp_properties.json
 *.mod
 *.smod
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
 
 # Executables
 *.exe

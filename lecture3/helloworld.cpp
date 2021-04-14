@@ -3,15 +3,6 @@
 
 using namespace std;
 
-double GetScoreAndAverage(int numScores);
-
-int main()
-{
-    double average = GetScoreAndAverage(4);
-    cout << "Average is " << average << endl;
-    return 0;
-}
-
 double GetScoreAndAverage(int numScores)
 {
     int sum; 
@@ -23,3 +14,10 @@ double GetScoreAndAverage(int numScores)
     return double(sum)/numScores;
     
 }
+int main()
+{
+    double average = GetScoreAndAverage(4);
+    cout << "Average is " << average << endl;
+    return 0;
+}
+

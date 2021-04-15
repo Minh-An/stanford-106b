@@ -45,4 +45,4 @@ c_cpp_properties.json
 *.out
 *.app
 
-*/.DS_Store
+.DS_Store

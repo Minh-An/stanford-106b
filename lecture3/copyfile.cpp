@@ -10,11 +10,10 @@ int main()
 {
     ifstream in;
     in.open("mydata.txt");
-    if(in.fail()) error("Couldn't open input file");
-
     ofstream out;
     out.open("mydata.copy");
-    if(out.fail()) error("Couldn't open output file to copy");
+
+    if(in.fail() || out.fail()) error("Couldn't open files");
 
     string line;
     while(!in.fail())

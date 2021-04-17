@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int SIZE = 1000000;
+const int NUM_ENTRIES = 1000000;
 const int NUM_BYTES = 8;
 
 int main()
@@ -17,10 +17,10 @@ int main()
 
     uint64_t num;
     double avg = 0.;
-    for(int i = 0; i < SIZE; i++)
+    for(int i = 0; i < NUM_ENTRIES; i++)
     {
         input.read((char *)(&num), NUM_BYTES);
-        avg += num/SIZE;
+        avg += num/NUM_ENTRIES;
     }
 
     double file_avg;

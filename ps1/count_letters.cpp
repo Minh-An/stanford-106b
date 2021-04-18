@@ -46,6 +46,7 @@ void WriteFrequencies(string filename, const Vector<freqT>& frequencies)
 
     output.write((char*)(freq_arr), sizeof(freqT)*NUM_LETTERS);
 
+    delete[] freq_arr;
     output.close();
 }
 

@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <string>
-#include "random.h"
 
 using namespace std;
 

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string> 
 #include "vector.h"
+#include "map.h"
 
 using namespace std;
 
@@ -25,8 +26,7 @@ void CreateFrequencies(string filename, Vector<freqT>& frequencies)
         c = tolower(input.get());
         if(isalpha(c))
         {
-            int idx = c - 'a';
-            frequencies[idx].freq++;
+            frequencies[c-'a'].freq++;
         }
     }
     input.close();
@@ -38,12 +38,10 @@ void WriteFrequencies(string filename, const Vector<freqT>& frequencies)
     output.open(filename, ofstream::binary);
 
     freqT* freq_arr = new freqT[NUM_LETTERS];
-
     for(int i = 0; i < frequencies.size(); i++)
     {
         freq_arr[i] = frequencies[i];
     }
-
     output.write((char*)(freq_arr), sizeof(freqT)*NUM_LETTERS);
 
     delete[] freq_arr;
@@ -88,5 +86,5 @@ void CountLetters(string filename)
 
 int main()
 {
-    CountLetters("shakespeare.txt");
+    CountLetters("letters.txt");
 }

@@ -39,10 +39,12 @@ c_cpp_properties.json
 *.la
 *.a
 *.lib
+*.jar
 
 # Executables
 *.exe
 *.out
 *.app
+*.class
 
-.DS_Store
+*.DS_Store

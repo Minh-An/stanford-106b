@@ -1,61 +1,72 @@
-/*
- * File: welcome.cpp
- * --------------
- * Sample program used to confirm Qt/CS106 install.
- * @author Julie Zelenski
- * #version 2020/09/12
- */
-
 #include <iostream>
+#include <vector>
 #include "console.h"
-#include "queue.h"
-#include "simpio.h"
-#include "gwindow.h"
 #include "gevent.h"
 #include "gtimer.h"
+#include "gwindow.h"
+#include "random.h"
+
 using namespace std;
 
+const int TRIANGLE_POINTS = 3;
 
-void welcomeAlert(string name)
+GPoint ClickPoint()
 {
-    GWindow* window = new GWindow(300, 200);
-    window->setTitle("Fall Quarter 2020");
-    window->setLocation(300, 100);
-    window->setExitOnClose(true);
-    window->setBackground("White");
-    window->clear();
-    window->setColor("black");
-    window->drawString("Welcome " + name + "!", 75, 175);
-    window->drawImage("res/stanford.png", 75, 25);
-    window->setColor("#008F00"); // green
-    double x = 140, y = 50, w = 15, h = 30;
-    for (int i = 0; i < 4; i++) {
-        window->fillPolygon({GPoint(x-w, y+h),GPoint(x, y),GPoint(x+w, y+h) } );
-        y += h/2;
-    }
-    window->setVisible(true);
-    GTimer timer(50);
-    timer.start();
-    while (true) {
-       GEvent e = waitForEvent(MOUSE_EVENT);
-       switch (e.getEventClass()) {
-        case MOUSE_EVENT:
-          GMouseEvent e2 = GMouseEvent(e);
-          cout << e2.getX() << endl;
-          //handleMouseEvent(GMouseEvent(e));
-          break;
-       }
+    while(true)
+    {
+        GMouseEvent e = waitForEvent(MOUSE_EVENT);
+        if(e.getEventType() == MOUSE_CLICKED)
+        {
+            return GPoint(e.getX(), e.getY());
+        }
     }
 }
 
+GPoint GetMidpoint(const GPoint& pA, const GPoint& pB)
+{
+    int mid_x = (pA.x + pB.x)/2;
+    int mid_y = (pA.y + pB.y)/2;
+    return GPoint(mid_x, mid_y);
+}
+
+void DrawAndUpdatePoint(GWindow& gw, const vector<GPoint>& points, GPoint& prev)
+{
+    int draw_idx = randomInteger(0, TRIANGLE_POINTS-1);
+    //gw.pause(100);
+    prev = GetMidpoint(points[draw_idx], prev);
+    gw.fillOval(prev.x, prev.y, 3, 3);
+}
+
+void ChaosGame(GWindow& gw, const vector<GPoint>& points)
+{
+    GTimer timer(1);
+    timer.start();
+    gw.setColor("black");
+    GPoint prev = points[randomInteger(0, TRIANGLE_POINTS-1)];
+    while(true)
+    {
+        GEvent e = waitForEvent(MOUSE_EVENT+TIMER_EVENT);
+        if(e.getEventType() == MOUSE_CLICKED)
+        {
+            return;
+        }
+        DrawAndUpdatePoint(gw, points, prev);
+        gw.repaint();
+    }
+}
 
 int main()
 {
-    Queue<string> names = {"Leland", "Stanford", "Junior", "University"};
-    cout << "Copyright 2020 " << names << endl;
-    string name = getLine("What is your name?");
-    welcomeAlert(name);
+    GWindow gw;
+    vector<GPoint> points(TRIANGLE_POINTS);
+
+    cout << "Click three points to create a triangle." << endl;
+    for(int i = 0; i < TRIANGLE_POINTS; i++)
+    {
+        points[i] = ClickPoint();
+    }
+    cout << "Starting Chaos Game. Click to end Chaos Game." << endl;
+
+    ChaosGame(gw, points);
     return 0;
 }
-
-#

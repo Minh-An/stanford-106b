@@ -51,3 +51,4 @@ c_cpp_properties.json
 
 # Qt
 *.pro.user
+**/build-*

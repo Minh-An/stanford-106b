@@ -48,3 +48,6 @@ c_cpp_properties.json
 *.class
 
 *.DS_Store
+
+# Qt
+*.pro.user

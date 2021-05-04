@@ -42,7 +42,7 @@ string Soundex(const string& name, unordered_map<char, int>& dict)
     return code;
 }
 
-int main() {
+int main3() {
     unordered_map<char, int> dict;
     PopulateDictionary("res/soundex.txt", dict);
 

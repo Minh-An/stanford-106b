@@ -62,7 +62,8 @@ DEFINES     +=  main=qMain qMain=studentMain
 # Afterward we glob-add files to SOURCES ourselves. Operator *= will unique
 # entries, so no worries about duplicates
 SOURCES         *=  "" \
-    main.cpp
+    main.cpp \
+    part4.cpp
 HEADERS         *=  ""
 
 # Gather any .cpp or .h files within the project folder (student/starter code).
@@ -141,4 +142,5 @@ FOUND ~= s|[a-z A-Z 0-9 _.+-]||   # yes, spaces ok, limited punctuation, $ % & a
 }
 
 DISTFILES += \
+    res/scores.txt \
     res/soundex.txt

@@ -46,7 +46,7 @@ void ChaosGame(GWindow& gw, const vector<GPoint>& points) {
     }
 }
 
-int main() {
+int main2() {
     GWindow gw;
     vector<GPoint> points(TRIANGLE_POINTS);
     cout << "Click three points to create a triangle." << endl;

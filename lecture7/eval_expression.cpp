@@ -30,7 +30,7 @@ int evaluate(string exp)
 
 int main()
 {
-    string exps[] = {"(2+2)", "((3*2)+5)", "((4+2)*(2+5))"};
+    string exps[] = {"(2+2)", "((3*2)+5)", "((3+4)*((5+6)+3))"};
     for(string exp: exps)
     {
         printf("%s = %d\n", exp.c_str(), evaluate(exp));
